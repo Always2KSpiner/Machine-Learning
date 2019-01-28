@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<!-- saved from url=(0079)http://thomas-cokelaer.info/blog/2014/01/starting-to-use-python-pandas-library/ -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Starting to use Python Pandas library  | Thomas Cokelaer's blog</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="stylesheet" type="text/css" media="all" href="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/style.css">
+<link rel="pingback" href="http://thomas-cokelaer.info/blog/xmlrpc.php">
+<link rel="dns-prefetch" href="http://platform-api.sharethis.com/">
+<link rel="dns-prefetch" href="http://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Thomas Cokelaer&#39;s blog » Feed" href="http://thomas-cokelaer.info/blog/feed/">
+<link rel="alternate" type="application/rss+xml" title="Thomas Cokelaer&#39;s blog » Comments Feed" href="http://thomas-cokelaer.info/blog/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Thomas Cokelaer&#39;s blog » Starting to use Python Pandas library Comments Feed" href="http://thomas-cokelaer.info/blog/2014/01/starting-to-use-python-pandas-library/feed/">
+		<iframe id="facebook-jssdk-iframe" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/saved_resource.html" style="width: 0px; height: 0px; border: 0px;"></iframe><script async="" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/analytics.js.download"></script><script src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/cb=gapi.loaded_2" async=""></script><script src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/cb=gapi.loaded_1" async=""></script><script id="twitter-wjs" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/widgets.js.download"></script><script type="text/javascript" async="" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/platform.js.download" gapi_processed="true"></script><script src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/cb=gapi(1).loaded_0" async=""></script><script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/thomas-cokelaer.info\/blog\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.9"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/wp-emoji-release.min.js.download" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="crayon-css" href="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/crayon.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-theme-github-css" href="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/github.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-font-monaco-css" href="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/monaco.css" type="text/css" media="all">
+<link rel="stylesheet" id="digg-digg-css" href="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/diggdigg-style.css" type="text/css" media="screen">
+<link rel="stylesheet" id="wp-syntax-css-css" href="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/wp-syntax.css" type="text/css" media="all">
+<script type="text/javascript" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/jquery.js.download"></script>
+<script type="text/javascript" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/jquery-migrate.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"http:\/\/thomas-cokelaer.info\/blog\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/crayon.min.js.download"></script>
+<script type="text/javascript" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/sharethis.js.download"></script>
+<link rel="https://api.w.org/" href="http://thomas-cokelaer.info/blog/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://thomas-cokelaer.info/blog/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://thomas-cokelaer.info/blog/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Reading Nikkon Raw image with Gimp plugin UFRaw" href="http://thomas-cokelaer.info/blog/2014/01/reading-nikkon-raw-image-with-gimp-plugin-ufraw/">
+<link rel="next" title="Pandas dataframe: grouping column by name" href="http://thomas-cokelaer.info/blog/2014/01/pandas-dataframe-grouping-column-by-name/">
+<meta name="generator" content="WordPress 4.9.9">
+<link rel="canonical" href="http://thomas-cokelaer.info/blog/2014/01/starting-to-use-python-pandas-library/">
+<link rel="shortlink" href="http://thomas-cokelaer.info/blog/?p=838">
+<link rel="alternate" type="application/json+oembed" href="http://thomas-cokelaer.info/blog/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2F2014%2F01%2Fstarting-to-use-python-pandas-library%2F">
+<link rel="alternate" type="text/xml+oembed" href="http://thomas-cokelaer.info/blog/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2F2014%2F01%2Fstarting-to-use-python-pandas-library%2F&amp;format=xml">
+<script src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/secureAnonymousFramework"></script><script charset="utf-8" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/button.e96bb6acc0f8bda511c0c46a84ee18e4.js.download"></script><style type="text/css">* html #li_ui_li_gen_1545644323183_0 a#li_ui_li_gen_1545644323183_0-link{height:1% !important;}#li_ui_li_gen_1545644323183_0{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1545644323183_0 span{-webkit-box-sizing:content-box !important;-moz-box-sizing:content-box !important;box-sizing:content-box !important;}#li_ui_li_gen_1545644323183_0 a#li_ui_li_gen_1545644323183_0-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1545644323183_0 a#li_ui_li_gen_1545644323183_0-link:link, #li_ui_li_gen_1545644323183_0 a#li_ui_li_gen_1545644323183_0-link:visited, #li_ui_li_gen_1545644323183_0 a#li_ui_li_gen_1545644323183_0-link:hover, #li_ui_li_gen_1545644323183_0 a#li_ui_li_gen_1545644323183_0-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1545644323183_0 a#li_ui_li_gen_1545644323183_0-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1545644323183_0 #li_ui_li_gen_1545644323183_0-logo{background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-position:0px -593px !important;background-repeat:no-repeat !important;background-color:#0077b5 !important;background-size:initial !important;cursor:pointer !important;border:0 !important;border-right:1px solid #066094 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;border-radius:2px !important;-webkit-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;}#li_ui_li_gen_1545644323183_0 #li_ui_li_gen_1545644323183_0-title{color:#fff !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;text-shadow:0 -1px #005887 !important;line-height:20px !important;border-radius:2px !important;-webkit-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;background-color:#0077b5 !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#0077b5), color-stop(100%,#0077b5)) !important; background-image: -webkit-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}#li_ui_li_gen_1545644323183_0.hovered #li_ui_li_gen_1545644323183_0-title{border:1px solid #000 !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#0369a0), color-stop(100%,#0369a0)) !important; background-image: -webkit-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}#li_ui_li_gen_1545644323183_0.clicked #li_ui_li_gen_1545644323183_0-title, #li_ui_li_gen_1545644323183_0.down #li_ui_li_gen_1545644323183_0-title{color:#fff !important;border:1px solid #000 !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#066094), color-stop(100%,#066094)) !important; background-image: -webkit-linear-gradient(top, #066094 0%, #066094 100%) !important;}.IN-shadowed #li_ui_li_gen_1545644323183_0 #li_ui_li_gen_1545644323183_0-title{}.IN-shadowed #li_ui_li_gen_1545644323183_0.hovered #li_ui_li_gen_1545644323183_0-title{}.IN-shadowed #li_ui_li_gen_1545644323183_0.clicked #li_ui_li_gen_1545644323183_0-title, .IN-shadowed #li_ui_li_gen_1545644323183_0.down #li_ui_li_gen_1545644323183_0-title{}#li_ui_li_gen_1545644323183_0 #li_ui_li_gen_1545644323183_0-title-text, #li_ui_li_gen_1545644323183_0 #li_ui_li_gen_1545644323183_0-title-text *{color:#fff !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;-webkit-font-smoothing:antialiased !important;display:inline-block !important;background:transparent none !important;vertical-align:top !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1545644323183_0 #li_ui_li_gen_1545644323183_0-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1545644323183_0 #li_ui_li_gen_1545644323183_0-title-text em{font-style:italic !important;}#li_ui_li_gen_1545644323183_0.hovered #li_ui_li_gen_1545644323183_0-title-text, #li_ui_li_gen_1545644323183_0.hovered #li_ui_li_gen_1545644323183_0-title-text *{color:#fff !important;}#li_ui_li_gen_1545644323183_0.clicked #li_ui_li_gen_1545644323183_0-title-text, #li_ui_li_gen_1545644323183_0.down #li_ui_li_gen_1545644323183_0-title-text, #li_ui_li_gen_1545644323183_0.clicked #li_ui_li_gen_1545644323183_0-title-text *, #li_ui_li_gen_1545644323183_0.down #li_ui_li_gen_1545644323183_0-title-text *{color:#fff !important;}#li_ui_li_gen_1545644323183_0 #li_ui_li_gen_1545644323183_0-title #li_ui_li_gen_1545644323183_0-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1545644323183_0 #li_ui_li_gen_1545644323183_0-title{color:#fff !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;background-color:#0077b5 !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#0077b5), color-stop(100%,#0077b5)) !important; background-image: -webkit-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}.success #li_ui_li_gen_1545644323183_0 #li_ui_li_gen_1545644323183_0-title-text, .success #li_ui_li_gen_1545644323183_0 #li_ui_li_gen_1545644323183_0-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1545644323183_0 #li_ui_li_gen_1545644323183_0-title{}.success #li_ui_li_gen_1545644323183_0.hovered #li_ui_li_gen_1545644323183_0-title{color:#fff !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#0369a0), color-stop(100%,#0369a0)) !important; background-image: -webkit-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}.success #li_ui_li_gen_1545644323183_0.hovered #li_ui_li_gen_1545644323183_0-title-text, .success #li_ui_li_gen_1545644323183_0.hovered #li_ui_li_gen_1545644323183_0-title-text *{color:#fff !important;}.success #li_ui_li_gen_1545644323183_0.clicked #li_ui_li_gen_1545644323183_0-title, .success #li_ui_li_gen_1545644323183_0.down #li_ui_li_gen_1545644323183_0-title{color:#fff !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#066094), color-stop(100%,#066094)) !important; background-image: -webkit-linear-gradient(top, #066094 0%, #066094 100%) !important;}.success #li_ui_li_gen_1545644323183_0.clicked #li_ui_li_gen_1545644323183_0-title-text, .success #li_ui_li_gen_1545644323183_0.down #li_ui_li_gen_1545644323183_0-title-text, .success #li_ui_li_gen_1545644323183_0.clicked #li_ui_li_gen_1545644323183_0-title-text *, .success #li_ui_li_gen_1545644323183_0.down #li_ui_li_gen_1545644323183_0-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1545644323183_0.clicked #li_ui_li_gen_1545644323183_0-title, .IN-shadowed .success #li_ui_li_gen_1545644323183_0.down #li_ui_li_gen_1545644323183_0-title{}</style><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#1d3c78;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}
+.fb_customer_chat_bounce_in_v2{animation-duration:300ms;animation-name:fb_bounce_in_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2{animation-duration:300ms;animation-name:fb_bounce_out_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_v2_mobile_chat_started{animation-duration:300ms;animation-name:fb_bounce_in_v2_mobile_chat_started;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2_mobile_chat_started{animation-duration:300ms;animation-name:fb_bounce_out_v2_mobile_chat_started;transition-timing-function:ease-in}.fb_customer_chat_bubble_pop_in{animation-duration:250ms;animation-name:fb_customer_chat_bubble_bounce_in_animation}.fb_customer_chat_bubble_animated_no_badge{box-shadow:0 3px 12px rgba(0, 0, 0, .15);transition:box-shadow 150ms linear}.fb_customer_chat_bubble_animated_no_badge:hover{box-shadow:0 5px 24px rgba(0, 0, 0, .3)}.fb_customer_chat_bubble_animated_with_badge{box-shadow:-5px 4px 14px rgba(0, 0, 0, .15);transition:box-shadow 150ms linear}.fb_customer_chat_bubble_animated_with_badge:hover{box-shadow:-5px 8px 24px rgba(0, 0, 0, .2)}.fb_invisible_flow{display:inherit;height:0;overflow-x:hidden;width:0}.fb_mobile_overlay_active{background-color:#fff;height:100%;overflow:hidden;position:fixed;visibility:hidden;width:100%}@keyframes fb_bounce_in_v2{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}50%{transform:scale(1.03, 1.03);transform-origin:bottom right}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}}@keyframes fb_bounce_in_v2_mobile_chat_started{0%{opacity:0;top:20px}100%{opacity:1;top:0}}@keyframes fb_bounce_out_v2{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}}@keyframes fb_bounce_out_v2_mobile_chat_started{0%{opacity:1;top:0}100%{opacity:0;top:20px}}@keyframes fb_customer_chat_bubble_bounce_in_animation{0%{bottom:6pt;opacity:0;transform:scale(0, 0);transform-origin:center}70%{bottom:18pt;opacity:1;transform:scale(1.2, 1.2)}100%{transform:scale(1, 1)}}</style></head>
+
+<body class="post-template-default single single-post postid-838 single-format-standard">
+<div id="wrapper" class="hfeed">
+	<div id="header">
+		<div id="masthead">
+			<div id="branding" role="banner">
+								<div id="site-title">
+					<span>
+						<a href="http://thomas-cokelaer.info/blog/" title="Thomas Cokelaer&#39;s blog" rel="home">Thomas Cokelaer's blog</a>
+					</span>
+				</div>
+				<div id="site-description">Notes on Data Analysis, Computer Science, Python, Biology, …</div>
+
+										<img src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/stars.jpg" width="940" height="150" alt="">
+								</div><!-- #branding -->
+
+			<div id="access" role="navigation">
+			  				<div class="skip-link screen-reader-text"><a href="http://thomas-cokelaer.info/blog/2014/01/starting-to-use-python-pandas-library/#content" title="Skip to content">Skip to content</a></div>
+								<div class="menu"><ul>
+<li><a href="http://thomas-cokelaer.info/blog/">Home</a></li><li class="page_item page-item-2"><a href="http://thomas-cokelaer.info/blog/about/">About this blog’s contents</a></li>
+<li class="page_item page-item-989"><a href="http://thomas-cokelaer.info/blog/gallery/">Gallery</a></li>
+<li class="page_item page-item-451"><a href="http://thomas-cokelaer.info/blog/homepage2/">Jump to main portal</a></li>
+</ul></div>
+			</div><!-- #access -->
+		</div><!-- #masthead -->
+	</div><!-- #header -->
+
+	<div id="main">
+
+		<div id="container">
+			<div id="content" role="main">
+
+			
+
+				<div id="nav-above" class="navigation">
+					<div class="nav-previous"><a href="http://thomas-cokelaer.info/blog/2014/01/reading-nikkon-raw-image-with-gimp-plugin-ufraw/" rel="prev"><span class="meta-nav">←</span> Reading Nikkon Raw image with Gimp plugin UFRaw</a></div>
+					<div class="nav-next"><a href="http://thomas-cokelaer.info/blog/2014/01/pandas-dataframe-grouping-column-by-name/" rel="next">Pandas dataframe: grouping column by name <span class="meta-nav">→</span></a></div>
+				</div><!-- #nav-above -->
+
+				<div id="post-838" class="post-838 post type-post status-publish format-standard hentry category-python-2 tag-pandas tag-python">
+					<h1 class="entry-title">Starting to use Python Pandas library</h1>
+
+					<div class="entry-meta">
+						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://thomas-cokelaer.info/blog/2014/01/starting-to-use-python-pandas-library/" title="10:52 am" rel="bookmark"><span class="entry-date">January 29, 2014</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://thomas-cokelaer.info/blog/author/admin/" title="View all posts by Thomas Cokelaer">Thomas Cokelaer</a></span>					</div><!-- .entry-meta -->
+
+					<div class="entry-content">
+						<a id="dd_start"></a><div style="float: right; margin-left: 10px;"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 61px; height: 20px;" title="Twitter Tweet Button" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/tweet_button.d30011b0f5ce05b98f24b01d3331b3c1.en.html" data-url="http://thomas-cokelaer.info/blog/2014/01/starting-to-use-python-pandas-library/"></iframe></div>
+<p><a href="http://pandas.pydata.org/" title="pandas">Pandas</a> is brilliant. </p>
+<p>If you are looking to manipulate data in Python, use it. I am refactoring most of my codes with this library. It provides many useful data structures to manipulate data in 2, 3, 4 dimensions and more. For R users, it will be obvious: it implements the DataFrame structure and the functionalities such as melting.  A great feature is also the fact that Pandas is linked to matplotlib and proposes the plot, histogram and boxplot plotting tools in many of its data structures. Yet, it takes a little bit of practice to fully understand the possiblities. </p>
+<p>The Pandas tutorial and user guide are great so please have a look at them. There are some very basic data manipulations that are not that intuitive when you don’t know them. So, I summarised here some very standard functionalities that took me more time than expected and hope it will be handy for beginners. There are maybe better or faster solutions and experience or feedback will tell me.</p>
+<h3> Creating a data frame and accessing columns, rows, values</h3>
+<p>First of all, let us create a DataFrame instance, which is nothing else than a matrix with names on the row and columns. In Pandas terminology, rows are called index, so let us create a DataFrame starting from a dictionary (there are many ways of creating data frames; the read_csv function could be handy)</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c20a91fe7f0b631994080" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -19px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">&gt;&gt;&gt; import pandas as pd
+&gt;&gt;&gt; df1 = pd.DataFrame({"weight": [80,60,70], "age":[20,40,50]}
+&gt;&gt;&gt; prinbt(df1)
+   age  weight
+0   20      80
+1   40      60
+2   50      70
+
+[3 rows x 2 columns]</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c20a91fe7f0b631994080-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c20a91fe7f0b631994080-2">2</div><div class="crayon-num" data-line="crayon-5c20a91fe7f0b631994080-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c20a91fe7f0b631994080-4">4</div><div class="crayon-num" data-line="crayon-5c20a91fe7f0b631994080-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c20a91fe7f0b631994080-6">6</div><div class="crayon-num" data-line="crayon-5c20a91fe7f0b631994080-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c20a91fe7f0b631994080-8">8</div><div class="crayon-num" data-line="crayon-5c20a91fe7f0b631994080-9">9</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c20a91fe7f0b631994080-1"><span class="crayon-o">&gt;&gt;&gt;</span><span class="crayon-h"> </span><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-e">pandas </span><span class="crayon-st">as</span><span class="crayon-h"> </span><span class="crayon-v">pd</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c20a91fe7f0b631994080-2"><span class="crayon-o">&gt;&gt;&gt;</span><span class="crayon-h"> </span><span class="crayon-v">df1</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">pd</span><span class="crayon-sy">.</span><span class="crayon-e">DataFrame</span><span class="crayon-sy">(</span><span class="crayon-sy">{</span><span class="crayon-s">"weight"</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-cn">80</span><span class="crayon-sy">,</span><span class="crayon-cn">60</span><span class="crayon-sy">,</span><span class="crayon-cn">70</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"age"</span><span class="crayon-o">:</span><span class="crayon-sy">[</span><span class="crayon-cn">20</span><span class="crayon-sy">,</span><span class="crayon-cn">40</span><span class="crayon-sy">,</span><span class="crayon-cn">50</span><span class="crayon-sy">]</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5c20a91fe7f0b631994080-3"><span class="crayon-o">&gt;&gt;&gt;</span><span class="crayon-h"> </span><span class="crayon-e">prinbt</span><span class="crayon-sy">(</span><span class="crayon-v">df1</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c20a91fe7f0b631994080-4"><span class="crayon-h">&nbsp;&nbsp; </span><span class="crayon-e">age&nbsp;&nbsp;</span><span class="crayon-i">weight</span></div><div class="crayon-line" id="crayon-5c20a91fe7f0b631994080-5"><span class="crayon-cn">0</span><span class="crayon-h">&nbsp;&nbsp; </span><span class="crayon-cn">20</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-cn">80</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c20a91fe7f0b631994080-6"><span class="crayon-cn">1</span><span class="crayon-h">&nbsp;&nbsp; </span><span class="crayon-cn">40</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-cn">60</span></div><div class="crayon-line" id="crayon-5c20a91fe7f0b631994080-7"><span class="crayon-cn">2</span><span class="crayon-h">&nbsp;&nbsp; </span><span class="crayon-cn">50</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-cn">70</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c20a91fe7f0b631994080-8">&nbsp;</div><div class="crayon-line" id="crayon-5c20a91fe7f0b631994080-9"><span class="crayon-sy">[</span><span class="crayon-cn">3</span><span class="crayon-h"> </span><span class="crayon-i">rows</span><span class="crayon-h"> </span><span class="crayon-i">x</span><span class="crayon-h"> </span><span class="crayon-cn">2</span><span class="crayon-h"> </span><span class="crayon-v">columns</span><span class="crayon-sy">]</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0027 seconds] -->
+<p></p>
+<p>What about accessing to the age columns:</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c20a91fe7f18555879639" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -19px; display: none; z-index: 4;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">df1['age']</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c20a91fe7f18555879639-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c20a91fe7f18555879639-1"><span class="crayon-v">df1</span><span class="crayon-sy">[</span><span class="crayon-s">'age'</span><span class="crayon-sy">]</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0003 seconds] -->
+<p>Note that the results is a time series and so you can now access to an item using its index as you would do with a list (e.g., df1[‘age’][0] would return 20)<br>
+However, in general, you may request several columns:</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c20a91fe7f1f544111543" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -19px; display: none; z-index: 4;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">df1[ ['age', 'weight']]</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c20a91fe7f1f544111543-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c20a91fe7f1f544111543-1"><span class="crayon-v">df1</span><span class="crayon-sy">[</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-s">'age'</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'weight'</span><span class="crayon-sy">]</span><span class="crayon-sy">]</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0004 seconds] -->
+<p>in which case the access to the first index requires the use of a special property called <strong>ix</strong>. Here, we access to the first row:</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c20a91fe7f25254214104" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -19px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">&gt;&gt;&gt; df1.ix[0]
+Out[1592]: 
+age       20
+weight    80
+Name: 0, dtype: int64</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c20a91fe7f25254214104-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c20a91fe7f25254214104-2">2</div><div class="crayon-num" data-line="crayon-5c20a91fe7f25254214104-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c20a91fe7f25254214104-4">4</div><div class="crayon-num" data-line="crayon-5c20a91fe7f25254214104-5">5</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c20a91fe7f25254214104-1"><span class="crayon-o">&gt;&gt;&gt;</span><span class="crayon-h"> </span><span class="crayon-v">df1</span><span class="crayon-sy">.</span><span class="crayon-v">ix</span><span class="crayon-sy">[</span><span class="crayon-cn">0</span><span class="crayon-sy">]</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c20a91fe7f25254214104-2"><span class="crayon-v">Out</span><span class="crayon-sy">[</span><span class="crayon-cn">1592</span><span class="crayon-sy">]</span><span class="crayon-o">:</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5c20a91fe7f25254214104-3"><span class="crayon-i">age</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-cn">20</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c20a91fe7f25254214104-4"><span class="crayon-i">weight</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-cn">80</span></div><div class="crayon-line" id="crayon-5c20a91fe7f25254214104-5"><span class="crayon-v">Name</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-cn">0</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">dtype</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">int64</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0011 seconds] -->
+<p></p>
+<p>that would be equivalent to :</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c20a91fe7f2a254219070" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -19px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">&gt;&gt;&gt; df1[['age', 'weight']].ix[0]
+age       20
+weight    80
+Name: 0, dtype: int64</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c20a91fe7f2a254219070-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c20a91fe7f2a254219070-2">2</div><div class="crayon-num" data-line="crayon-5c20a91fe7f2a254219070-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c20a91fe7f2a254219070-4">4</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c20a91fe7f2a254219070-1"><span class="crayon-o">&gt;&gt;&gt;</span><span class="crayon-h"> </span><span class="crayon-v">df1</span><span class="crayon-sy">[</span><span class="crayon-sy">[</span><span class="crayon-s">'age'</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'weight'</span><span class="crayon-sy">]</span><span class="crayon-sy">]</span><span class="crayon-sy">.</span><span class="crayon-v">ix</span><span class="crayon-sy">[</span><span class="crayon-cn">0</span><span class="crayon-sy">]</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c20a91fe7f2a254219070-2"><span class="crayon-i">age</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-cn">20</span></div><div class="crayon-line" id="crayon-5c20a91fe7f2a254219070-3"><span class="crayon-i">weight</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-cn">80</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c20a91fe7f2a254219070-4"><span class="crayon-v">Name</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-cn">0</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">dtype</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">int64</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0011 seconds] -->
+<p></p>
+<p>Keep in mind that you can access a value by using indices or names. For instance all these statements are equivalent:</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c20a91fe7f31958770665" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -19px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">df1.ix[0,'age']
+df1.ix[0,0]
+df1['age'][0]</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c20a91fe7f31958770665-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c20a91fe7f31958770665-2">2</div><div class="crayon-num" data-line="crayon-5c20a91fe7f31958770665-3">3</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c20a91fe7f31958770665-1"><span class="crayon-v">df1</span><span class="crayon-sy">.</span><span class="crayon-v">ix</span><span class="crayon-sy">[</span><span class="crayon-cn">0</span><span class="crayon-sy">,</span><span class="crayon-s">'age'</span><span class="crayon-sy">]</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c20a91fe7f31958770665-2"><span class="crayon-v">df1</span><span class="crayon-sy">.</span><span class="crayon-v">ix</span><span class="crayon-sy">[</span><span class="crayon-cn">0</span><span class="crayon-sy">,</span><span class="crayon-cn">0</span><span class="crayon-sy">]</span></div><div class="crayon-line" id="crayon-5c20a91fe7f31958770665-3"><span class="crayon-v">df1</span><span class="crayon-sy">[</span><span class="crayon-s">'age'</span><span class="crayon-sy">]</span><span class="crayon-sy">[</span><span class="crayon-cn">0</span><span class="crayon-sy">]</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0008 seconds] -->
+<p></p>
+<h3>append rows and columns</h3>
+<p>To append a column, it’s quite easy: you can use set a new column as follows:</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c20a91fe7f37630991119" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -19px; display: none; z-index: 4;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">df1['gender'] = ['m','f','m']</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c20a91fe7f37630991119-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c20a91fe7f37630991119-1"><span class="crayon-v">df1</span><span class="crayon-sy">[</span><span class="crayon-s">'gender'</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-s">'m'</span><span class="crayon-sy">,</span><span class="crayon-s">'f'</span><span class="crayon-sy">,</span><span class="crayon-s">'m'</span><span class="crayon-sy">]</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0006 seconds] -->
+<p></p>
+<p>To add a new row, you can add use several data structure. Here, we use a list of dictionaries. Each dictionary correspond to one new row. You may use another data frame:</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c20a91fe7f3d320726172" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -19px; display: none; z-index: 4;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">df1 = df1.append([{'age':25,'weight':75, 'gender':'m'}])</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c20a91fe7f3d320726172-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c20a91fe7f3d320726172-1"><span class="crayon-v">df1</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">df1</span><span class="crayon-sy">.</span><span class="crayon-e">append</span><span class="crayon-sy">(</span><span class="crayon-sy">[</span><span class="crayon-sy">{</span><span class="crayon-s">'age'</span><span class="crayon-o">:</span><span class="crayon-cn">25</span><span class="crayon-sy">,</span><span class="crayon-s">'weight'</span><span class="crayon-o">:</span><span class="crayon-cn">75</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'gender'</span><span class="crayon-o">:</span><span class="crayon-s">'m'</span><span class="crayon-sy">}</span><span class="crayon-sy">]</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0008 seconds] -->
+<p></p>
+<h3>plotting</h3>
+<p>Of course, as mentionned there are plotting functionalities. Here is one quick and simple example but handy. You can select the variable x and y otherwise all columns (variables) are plotted together, which may be very useful as well.</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c20a91fe7f42207556062" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -19px; display: none; z-index: 4;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">df1.plot(x="age", y="weight")</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c20a91fe7f42207556062-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c20a91fe7f42207556062-1"><span class="crayon-v">df1</span><span class="crayon-sy">.</span><span class="crayon-e">plot</span><span class="crayon-sy">(</span><span class="crayon-v">x</span><span class="crayon-o">=</span><span class="crayon-s">"age"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">y</span><span class="crayon-o">=</span><span class="crayon-s">"weight"</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0006 seconds] -->
+<p></p>
+<a id="dd_end"></a><script type="text/javascript">var dd_offset_from_content = 30;var dd_top_offset_from_content = 0;var dd_override_start_anchor_id = "";var dd_override_top_offset = "";</script><script type="text/javascript" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/diggdigg-floating-bar.js.download"></script>											</div><!-- .entry-content -->
+
+
+					<div class="entry-utility">
+						This entry was posted in <a href="http://thomas-cokelaer.info/blog/category/python-2/" rel="category tag">Python</a> and tagged <a href="http://thomas-cokelaer.info/blog/tag/pandas/" rel="tag">pandas</a>, <a href="http://thomas-cokelaer.info/blog/tag/python/" rel="tag">python</a>. Bookmark the <a href="http://thomas-cokelaer.info/blog/2014/01/starting-to-use-python-pandas-library/" title="Permalink to Starting to use Python Pandas library" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+				</div><!-- #post-## -->
+
+				<div id="nav-below" class="navigation">
+					<div class="nav-previous"><a href="http://thomas-cokelaer.info/blog/2014/01/reading-nikkon-raw-image-with-gimp-plugin-ufraw/" rel="prev"><span class="meta-nav">←</span> Reading Nikkon Raw image with Gimp plugin UFRaw</a></div>
+					<div class="nav-next"><a href="http://thomas-cokelaer.info/blog/2014/01/pandas-dataframe-grouping-column-by-name/" rel="next">Pandas dataframe: grouping column by name <span class="meta-nav">→</span></a></div>
+				</div><!-- #nav-below -->
+
+				
+			<div id="comments">
+
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://thomas-cokelaer.info/blog/2014/01/starting-to-use-python-pandas-library/#respond" style="display:none;">Cancel reply</a></small></h3>			<form action="http://thomas-cokelaer.info/blog/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+				<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span></p><p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p><p class="comment-form-author"><label for="author">Name</label> <input id="author" name="author" type="text" value="" size="30" maxlength="245"></p>
+<p class="comment-form-email"><label for="email">Email</label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200"></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="838" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="b3877b590a"></p><p style="display: none;"></p>			<input type="hidden" id="ak_js" name="ak_js" value="1545644322984"></form>
+			</div><!-- #respond -->
+	
+</div><!-- #comments -->
+
+
+			</div><!-- #content -->
+		</div><!-- #container -->
+
+
+		<div id="primary" class="widget-area" role="complementary">
+			<ul class="xoxo">
+
+<li id="search-2" class="widget-container widget_search"><form role="search" method="get" id="searchform" class="searchform" action="http://thomas-cokelaer.info/blog/">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input type="text" value="" name="s" id="s">
+					<input type="submit" id="searchsubmit" value="Search">
+				</div>
+			</form></li>
+<!---Begin Display of Random Image sidebar widget-->
+<li id="random_image-2" class="widget-container widget_many"><h3 class="widget-title">Photos</h3><!--Searching /home/thomascojx/www/blog/../images: found 31 images in 0.006852 seconds-->
+<div id="random_image_wrapper" style="text-align:center;"><span></span>
+<a href="http://thomas-cokelaer.info/images"><img style="padding: 3px 3px 3px 3px;" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/ebi_banner.jpg" width="150" alt=""></a>
+
+
+</div>
+<!---Displayed in 0.008415 seconds.-->
+</li><li id="custom_html-3" class="widget_text widget-container widget_custom_html"><div class="textwidget custom-html-widget"><script async="" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/adsbygoogle.js.download"></script>
+<!-- blog3 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6600261331150647" data-ad-slot="7404145980" data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></li>	        <li id="wp-cumulus" class="widget-container wp_cumulus_widget">							<h3 class="widget-title">Tag Cloud</h3>						<!-- SWFObject embed by Geoff Stearns geoff@deconcept.com http://blog.deconcept.com/swfobject/ --><script type="text/javascript" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/swfobject.js.download"></script><div id="wpcumuluswidgetcontent2941852"><p><a href="http://thomas-cokelaer.info/blog/tag/android/" class="tag-cloud-link tag-link-23 tag-link-position-1" style="font-size: 8pt;" aria-label="android (1 item)">android</a>
+<a href="http://thomas-cokelaer.info/blog/tag/awk/" class="tag-cloud-link tag-link-19 tag-link-position-2" style="font-size: 14.461538461538pt;" aria-label="awk (7 items)">awk</a>
+<a href="http://thomas-cokelaer.info/blog/tag/bash/" class="tag-cloud-link tag-link-52 tag-link-position-3" style="font-size: 11.230769230769pt;" aria-label="bash (3 items)">bash</a>
+<a href="http://thomas-cokelaer.info/blog/tag/bioservices/" class="tag-cloud-link tag-link-94 tag-link-position-4" style="font-size: 9.9384615384615pt;" aria-label="bioservices (2 items)">bioservices</a>
+<a href="http://thomas-cokelaer.info/blog/tag/books/" class="tag-cloud-link tag-link-27 tag-link-position-5" style="font-size: 8pt;" aria-label="books (1 item)">books</a>
+<a href="http://thomas-cokelaer.info/blog/tag/c/" class="tag-cloud-link tag-link-18 tag-link-position-6" style="font-size: 9.9384615384615pt;" aria-label="C (2 items)">C</a>
+<a href="http://thomas-cokelaer.info/blog/tag/css/" class="tag-cloud-link tag-link-14 tag-link-position-7" style="font-size: 9.9384615384615pt;" aria-label="CSS (2 items)">CSS</a>
+<a href="http://thomas-cokelaer.info/blog/tag/dictionary/" class="tag-cloud-link tag-link-130 tag-link-position-8" style="font-size: 9.9384615384615pt;" aria-label="dictionary (2 items)">dictionary</a>
+<a href="http://thomas-cokelaer.info/blog/tag/english/" class="tag-cloud-link tag-link-4 tag-link-position-9" style="font-size: 8pt;" aria-label="english (1 item)">english</a>
+<a href="http://thomas-cokelaer.info/blog/tag/fedora/" class="tag-cloud-link tag-link-13 tag-link-position-10" style="font-size: 18.984615384615pt;" aria-label="fedora (20 items)">fedora</a>
+<a href="http://thomas-cokelaer.info/blog/tag/firefox/" class="tag-cloud-link tag-link-6 tag-link-position-11" style="font-size: 13.169230769231pt;" aria-label="Firefox (5 items)">Firefox</a>
+<a href="http://thomas-cokelaer.info/blog/tag/gimp/" class="tag-cloud-link tag-link-104 tag-link-position-12" style="font-size: 9.9384615384615pt;" aria-label="gimp (2 items)">gimp</a>
+<a href="http://thomas-cokelaer.info/blog/tag/git/" class="tag-cloud-link tag-link-98 tag-link-position-13" style="font-size: 14.461538461538pt;" aria-label="git (7 items)">git</a>
+<a href="http://thomas-cokelaer.info/blog/tag/github/" class="tag-cloud-link tag-link-112 tag-link-position-14" style="font-size: 12.307692307692pt;" aria-label="github (4 items)">github</a>
+<a href="http://thomas-cokelaer.info/blog/tag/graphviz/" class="tag-cloud-link tag-link-66 tag-link-position-15" style="font-size: 9.9384615384615pt;" aria-label="graphviz (2 items)">graphviz</a>
+<a href="http://thomas-cokelaer.info/blog/tag/html/" class="tag-cloud-link tag-link-10 tag-link-position-16" style="font-size: 15pt;" aria-label="HTML (8 items)">HTML</a>
+<a href="http://thomas-cokelaer.info/blog/tag/ipython/" class="tag-cloud-link tag-link-90 tag-link-position-17" style="font-size: 9.9384615384615pt;" aria-label="ipython (2 items)">ipython</a>
+<a href="http://thomas-cokelaer.info/blog/tag/latex/" class="tag-cloud-link tag-link-26 tag-link-position-18" style="font-size: 11.230769230769pt;" aria-label="latex (3 items)">latex</a>
+<a href="http://thomas-cokelaer.info/blog/tag/linux/" class="tag-cloud-link tag-link-116 tag-link-position-19" style="font-size: 17.476923076923pt;" aria-label="Linux (14 items)">Linux</a>
+<a href="http://thomas-cokelaer.info/blog/tag/malloc/" class="tag-cloud-link tag-link-59 tag-link-position-20" style="font-size: 9.9384615384615pt;" aria-label="malloc (2 items)">malloc</a>
+<a href="http://thomas-cokelaer.info/blog/tag/matplotlib/" class="tag-cloud-link tag-link-48 tag-link-position-21" style="font-size: 13.923076923077pt;" aria-label="matplotlib (6 items)">matplotlib</a>
+<a href="http://thomas-cokelaer.info/blog/tag/mount/" class="tag-cloud-link tag-link-34 tag-link-position-22" style="font-size: 9.9384615384615pt;" aria-label="mount (2 items)">mount</a>
+<a href="http://thomas-cokelaer.info/blog/tag/pandas/" class="tag-cloud-link tag-link-103 tag-link-position-23" style="font-size: 13.923076923077pt;" aria-label="pandas (6 items)">pandas</a>
+<a href="http://thomas-cokelaer.info/blog/tag/pdf/" class="tag-cloud-link tag-link-15 tag-link-position-24" style="font-size: 12.307692307692pt;" aria-label="PDF (4 items)">PDF</a>
+<a href="http://thomas-cokelaer.info/blog/tag/perl/" class="tag-cloud-link tag-link-109 tag-link-position-25" style="font-size: 9.9384615384615pt;" aria-label="perl (2 items)">perl</a>
+<a href="http://thomas-cokelaer.info/blog/tag/php/" class="tag-cloud-link tag-link-17 tag-link-position-26" style="font-size: 13.169230769231pt;" aria-label="PHP (5 items)">PHP</a>
+<a href="http://thomas-cokelaer.info/blog/tag/pypi/" class="tag-cloud-link tag-link-111 tag-link-position-27" style="font-size: 11.230769230769pt;" aria-label="pypi (3 items)">pypi</a>
+<a href="http://thomas-cokelaer.info/blog/tag/python/" class="tag-cloud-link tag-link-3 tag-link-position-28" style="font-size: 22pt;" aria-label="python (39 items)">python</a>
+<a href="http://thomas-cokelaer.info/blog/tag/r/" class="tag-cloud-link tag-link-117 tag-link-position-29" style="font-size: 17.153846153846pt;" aria-label="R (13 items)">R</a>
+<a href="http://thomas-cokelaer.info/blog/tag/rest/" class="tag-cloud-link tag-link-22 tag-link-position-30" style="font-size: 9.9384615384615pt;" aria-label="rest (2 items)">rest</a>
+<a href="http://thomas-cokelaer.info/blog/tag/rpy/" class="tag-cloud-link tag-link-30 tag-link-position-31" style="font-size: 8pt;" aria-label="rpy (1 item)">rpy</a>
+<a href="http://thomas-cokelaer.info/blog/tag/rpy2/" class="tag-cloud-link tag-link-46 tag-link-position-32" style="font-size: 13.923076923077pt;" aria-label="rpy2 (6 items)">rpy2</a>
+<a href="http://thomas-cokelaer.info/blog/tag/samtools/" class="tag-cloud-link tag-link-139 tag-link-position-33" style="font-size: 9.9384615384615pt;" aria-label="samtools (2 items)">samtools</a>
+<a href="http://thomas-cokelaer.info/blog/tag/sed/" class="tag-cloud-link tag-link-31 tag-link-position-34" style="font-size: 13.169230769231pt;" aria-label="sed (5 items)">sed</a>
+<a href="http://thomas-cokelaer.info/blog/tag/sphinx/" class="tag-cloud-link tag-link-21 tag-link-position-35" style="font-size: 9.9384615384615pt;" aria-label="sphinx (2 items)">sphinx</a>
+<a href="http://thomas-cokelaer.info/blog/tag/ssh/" class="tag-cloud-link tag-link-51 tag-link-position-36" style="font-size: 12.307692307692pt;" aria-label="ssh (4 items)">ssh</a>
+<a href="http://thomas-cokelaer.info/blog/tag/svn/" class="tag-cloud-link tag-link-44 tag-link-position-37" style="font-size: 15pt;" aria-label="svn (8 items)">svn</a>
+<a href="http://thomas-cokelaer.info/blog/tag/video/" class="tag-cloud-link tag-link-12 tag-link-position-38" style="font-size: 8pt;" aria-label="video (1 item)">video</a>
+<a href="http://thomas-cokelaer.info/blog/tag/vim/" class="tag-cloud-link tag-link-25 tag-link-position-39" style="font-size: 15pt;" aria-label="vim (8 items)">vim</a>
+<a href="http://thomas-cokelaer.info/blog/tag/virtualbox/" class="tag-cloud-link tag-link-24 tag-link-position-40" style="font-size: 11.230769230769pt;" aria-label="virtualbox (3 items)">virtualbox</a>
+<a href="http://thomas-cokelaer.info/blog/tag/virtualenv/" class="tag-cloud-link tag-link-36 tag-link-position-41" style="font-size: 13.923076923077pt;" aria-label="virtualenv (6 items)">virtualenv</a>
+<a href="http://thomas-cokelaer.info/blog/tag/web-services/" class="tag-cloud-link tag-link-84 tag-link-position-42" style="font-size: 9.9384615384615pt;" aria-label="web services (2 items)">web services</a>
+<a href="http://thomas-cokelaer.info/blog/tag/wget/" class="tag-cloud-link tag-link-119 tag-link-position-43" style="font-size: 9.9384615384615pt;" aria-label="wget (2 items)">wget</a>
+<a href="http://thomas-cokelaer.info/blog/tag/xbmc/" class="tag-cloud-link tag-link-86 tag-link-position-44" style="font-size: 9.9384615384615pt;" aria-label="xbmc (2 items)">xbmc</a>
+<a href="http://thomas-cokelaer.info/blog/tag/yum/" class="tag-cloud-link tag-link-28 tag-link-position-45" style="font-size: 11.230769230769pt;" aria-label="yum (3 items)">yum</a></p><p>WP Cumulus Flash tag cloud by <a href="http://www.roytanck.com/" rel="nofollow">Roy Tanck</a> requires <a href="http://www.macromedia.com/go/getflashplayer">Flash Player</a> 9 or better.</p></div><script type="text/javascript">var widget_so7166171 = new SWFObject("http://thomas-cokelaer.info/blog/wp-content/plugins/wp-cumulus/tagcloud.swf?r=788476", "tagcloudflash", "160", "160", "9", "#ffffff");widget_so7166171.addParam("allowScriptAccess", "always");widget_so7166171.addVariable("tcolor", "0x333333");widget_so7166171.addVariable("tcolor2", "0x333333");widget_so7166171.addVariable("hicolor", "0x000000");widget_so7166171.addVariable("tspeed", "100");widget_so7166171.addVariable("distr", "true");widget_so7166171.addVariable("mode", "tags");widget_so7166171.addVariable("tagcloud", "%3Ctags%3E%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fandroid%2F%22+class%3D%22tag-cloud-link+tag-link-23+tag-link-position-1%22+style%3D%22font-size%3A+8pt%3B%22+aria-label%3D%22android+%281+item%29%22%3Eandroid%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fawk%2F%22+class%3D%22tag-cloud-link+tag-link-19+tag-link-position-2%22+style%3D%22font-size%3A+14.461538461538pt%3B%22+aria-label%3D%22awk+%287+items%29%22%3Eawk%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fbash%2F%22+class%3D%22tag-cloud-link+tag-link-52+tag-link-position-3%22+style%3D%22font-size%3A+11.230769230769pt%3B%22+aria-label%3D%22bash+%283+items%29%22%3Ebash%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fbioservices%2F%22+class%3D%22tag-cloud-link+tag-link-94+tag-link-position-4%22+style%3D%22font-size%3A+9.9384615384615pt%3B%22+aria-label%3D%22bioservices+%282+items%29%22%3Ebioservices%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fbooks%2F%22+class%3D%22tag-cloud-link+tag-link-27+tag-link-position-5%22+style%3D%22font-size%3A+8pt%3B%22+aria-label%3D%22books+%281+item%29%22%3Ebooks%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fc%2F%22+class%3D%22tag-cloud-link+tag-link-18+tag-link-position-6%22+style%3D%22font-size%3A+9.9384615384615pt%3B%22+aria-label%3D%22C+%282+items%29%22%3EC%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fcss%2F%22+class%3D%22tag-cloud-link+tag-link-14+tag-link-position-7%22+style%3D%22font-size%3A+9.9384615384615pt%3B%22+aria-label%3D%22CSS+%282+items%29%22%3ECSS%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fdictionary%2F%22+class%3D%22tag-cloud-link+tag-link-130+tag-link-position-8%22+style%3D%22font-size%3A+9.9384615384615pt%3B%22+aria-label%3D%22dictionary+%282+items%29%22%3Edictionary%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fenglish%2F%22+class%3D%22tag-cloud-link+tag-link-4+tag-link-position-9%22+style%3D%22font-size%3A+8pt%3B%22+aria-label%3D%22english+%281+item%29%22%3Eenglish%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Ffedora%2F%22+class%3D%22tag-cloud-link+tag-link-13+tag-link-position-10%22+style%3D%22font-size%3A+18.984615384615pt%3B%22+aria-label%3D%22fedora+%2820+items%29%22%3Efedora%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Ffirefox%2F%22+class%3D%22tag-cloud-link+tag-link-6+tag-link-position-11%22+style%3D%22font-size%3A+13.169230769231pt%3B%22+aria-label%3D%22Firefox+%285+items%29%22%3EFirefox%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fgimp%2F%22+class%3D%22tag-cloud-link+tag-link-104+tag-link-position-12%22+style%3D%22font-size%3A+9.9384615384615pt%3B%22+aria-label%3D%22gimp+%282+items%29%22%3Egimp%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fgit%2F%22+class%3D%22tag-cloud-link+tag-link-98+tag-link-position-13%22+style%3D%22font-size%3A+14.461538461538pt%3B%22+aria-label%3D%22git+%287+items%29%22%3Egit%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fgithub%2F%22+class%3D%22tag-cloud-link+tag-link-112+tag-link-position-14%22+style%3D%22font-size%3A+12.307692307692pt%3B%22+aria-label%3D%22github+%284+items%29%22%3Egithub%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fgraphviz%2F%22+class%3D%22tag-cloud-link+tag-link-66+tag-link-position-15%22+style%3D%22font-size%3A+9.9384615384615pt%3B%22+aria-label%3D%22graphviz+%282+items%29%22%3Egraphviz%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fhtml%2F%22+class%3D%22tag-cloud-link+tag-link-10+tag-link-position-16%22+style%3D%22font-size%3A+15pt%3B%22+aria-label%3D%22HTML+%288+items%29%22%3EHTML%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fipython%2F%22+class%3D%22tag-cloud-link+tag-link-90+tag-link-position-17%22+style%3D%22font-size%3A+9.9384615384615pt%3B%22+aria-label%3D%22ipython+%282+items%29%22%3Eipython%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Flatex%2F%22+class%3D%22tag-cloud-link+tag-link-26+tag-link-position-18%22+style%3D%22font-size%3A+11.230769230769pt%3B%22+aria-label%3D%22latex+%283+items%29%22%3Elatex%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Flinux%2F%22+class%3D%22tag-cloud-link+tag-link-116+tag-link-position-19%22+style%3D%22font-size%3A+17.476923076923pt%3B%22+aria-label%3D%22Linux+%2814+items%29%22%3ELinux%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fmalloc%2F%22+class%3D%22tag-cloud-link+tag-link-59+tag-link-position-20%22+style%3D%22font-size%3A+9.9384615384615pt%3B%22+aria-label%3D%22malloc+%282+items%29%22%3Emalloc%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fmatplotlib%2F%22+class%3D%22tag-cloud-link+tag-link-48+tag-link-position-21%22+style%3D%22font-size%3A+13.923076923077pt%3B%22+aria-label%3D%22matplotlib+%286+items%29%22%3Ematplotlib%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fmount%2F%22+class%3D%22tag-cloud-link+tag-link-34+tag-link-position-22%22+style%3D%22font-size%3A+9.9384615384615pt%3B%22+aria-label%3D%22mount+%282+items%29%22%3Emount%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fpandas%2F%22+class%3D%22tag-cloud-link+tag-link-103+tag-link-position-23%22+style%3D%22font-size%3A+13.923076923077pt%3B%22+aria-label%3D%22pandas+%286+items%29%22%3Epandas%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fpdf%2F%22+class%3D%22tag-cloud-link+tag-link-15+tag-link-position-24%22+style%3D%22font-size%3A+12.307692307692pt%3B%22+aria-label%3D%22PDF+%284+items%29%22%3EPDF%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fperl%2F%22+class%3D%22tag-cloud-link+tag-link-109+tag-link-position-25%22+style%3D%22font-size%3A+9.9384615384615pt%3B%22+aria-label%3D%22perl+%282+items%29%22%3Eperl%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fphp%2F%22+class%3D%22tag-cloud-link+tag-link-17+tag-link-position-26%22+style%3D%22font-size%3A+13.169230769231pt%3B%22+aria-label%3D%22PHP+%285+items%29%22%3EPHP%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fpypi%2F%22+class%3D%22tag-cloud-link+tag-link-111+tag-link-position-27%22+style%3D%22font-size%3A+11.230769230769pt%3B%22+aria-label%3D%22pypi+%283+items%29%22%3Epypi%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fpython%2F%22+class%3D%22tag-cloud-link+tag-link-3+tag-link-position-28%22+style%3D%22font-size%3A+22pt%3B%22+aria-label%3D%22python+%2839+items%29%22%3Epython%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fr%2F%22+class%3D%22tag-cloud-link+tag-link-117+tag-link-position-29%22+style%3D%22font-size%3A+17.153846153846pt%3B%22+aria-label%3D%22R+%2813+items%29%22%3ER%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Frest%2F%22+class%3D%22tag-cloud-link+tag-link-22+tag-link-position-30%22+style%3D%22font-size%3A+9.9384615384615pt%3B%22+aria-label%3D%22rest+%282+items%29%22%3Erest%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Frpy%2F%22+class%3D%22tag-cloud-link+tag-link-30+tag-link-position-31%22+style%3D%22font-size%3A+8pt%3B%22+aria-label%3D%22rpy+%281+item%29%22%3Erpy%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Frpy2%2F%22+class%3D%22tag-cloud-link+tag-link-46+tag-link-position-32%22+style%3D%22font-size%3A+13.923076923077pt%3B%22+aria-label%3D%22rpy2+%286+items%29%22%3Erpy2%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fsamtools%2F%22+class%3D%22tag-cloud-link+tag-link-139+tag-link-position-33%22+style%3D%22font-size%3A+9.9384615384615pt%3B%22+aria-label%3D%22samtools+%282+items%29%22%3Esamtools%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fsed%2F%22+class%3D%22tag-cloud-link+tag-link-31+tag-link-position-34%22+style%3D%22font-size%3A+13.169230769231pt%3B%22+aria-label%3D%22sed+%285+items%29%22%3Esed%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fsphinx%2F%22+class%3D%22tag-cloud-link+tag-link-21+tag-link-position-35%22+style%3D%22font-size%3A+9.9384615384615pt%3B%22+aria-label%3D%22sphinx+%282+items%29%22%3Esphinx%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fssh%2F%22+class%3D%22tag-cloud-link+tag-link-51+tag-link-position-36%22+style%3D%22font-size%3A+12.307692307692pt%3B%22+aria-label%3D%22ssh+%284+items%29%22%3Essh%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fsvn%2F%22+class%3D%22tag-cloud-link+tag-link-44+tag-link-position-37%22+style%3D%22font-size%3A+15pt%3B%22+aria-label%3D%22svn+%288+items%29%22%3Esvn%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fvideo%2F%22+class%3D%22tag-cloud-link+tag-link-12+tag-link-position-38%22+style%3D%22font-size%3A+8pt%3B%22+aria-label%3D%22video+%281+item%29%22%3Evideo%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fvim%2F%22+class%3D%22tag-cloud-link+tag-link-25+tag-link-position-39%22+style%3D%22font-size%3A+15pt%3B%22+aria-label%3D%22vim+%288+items%29%22%3Evim%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fvirtualbox%2F%22+class%3D%22tag-cloud-link+tag-link-24+tag-link-position-40%22+style%3D%22font-size%3A+11.230769230769pt%3B%22+aria-label%3D%22virtualbox+%283+items%29%22%3Evirtualbox%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fvirtualenv%2F%22+class%3D%22tag-cloud-link+tag-link-36+tag-link-position-41%22+style%3D%22font-size%3A+13.923076923077pt%3B%22+aria-label%3D%22virtualenv+%286+items%29%22%3Evirtualenv%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fweb-services%2F%22+class%3D%22tag-cloud-link+tag-link-84+tag-link-position-42%22+style%3D%22font-size%3A+9.9384615384615pt%3B%22+aria-label%3D%22web+services+%282+items%29%22%3Eweb+services%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fwget%2F%22+class%3D%22tag-cloud-link+tag-link-119+tag-link-position-43%22+style%3D%22font-size%3A+9.9384615384615pt%3B%22+aria-label%3D%22wget+%282+items%29%22%3Ewget%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fxbmc%2F%22+class%3D%22tag-cloud-link+tag-link-86+tag-link-position-44%22+style%3D%22font-size%3A+9.9384615384615pt%3B%22+aria-label%3D%22xbmc+%282+items%29%22%3Exbmc%3C%2Fa%3E%0A%3Ca+href%3D%22http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2Ftag%2Fyum%2F%22+class%3D%22tag-cloud-link+tag-link-28+tag-link-position-45%22+style%3D%22font-size%3A+11.230769230769pt%3B%22+aria-label%3D%22yum+%283+items%29%22%3Eyum%3C%2Fa%3E%3C%2Ftags%3E");widget_so7166171.write("wpcumuluswidgetcontent2941852");</script>	        </li>		<li id="text-4" class="widget-container widget_text"><h3 class="widget-title">Follow me</h3>			<div class="textwidget"><!-- Place this tag where you want the widget to render. -->
+<div id="___person_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 240px; height: 263px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 240px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 263px;" tabindex="0" vspace="0" width="100%" id="I0_1545644322133" name="I0_1545644322133" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/person.html" data-gapiattached="true" title="+Badge"></iframe></div>
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+      (function() {
+              var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                  po.src = 'https://apis.google.com/js/platform.js';
+                      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                        })();
+                    </script>
+</div>
+		</li>		<li id="recent-posts-2" class="widget-container widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+											<li>
+					<a href="http://thomas-cokelaer.info/blog/2018/10/format-usb-key-under-fedora/">format USB key under fedora</a>
+									</li>
+											<li>
+					<a href="http://thomas-cokelaer.info/blog/2018/08/all-about-rna-and-dna-sequencing/">All about RNA and DNA sequencing</a>
+									</li>
+											<li>
+					<a href="http://thomas-cokelaer.info/blog/2018/05/missing-sam-header-with-minimap2-and-samtools/">missing SAM header with minimap2 and samtools</a>
+									</li>
+											<li>
+					<a href="http://thomas-cokelaer.info/blog/2018/03/how-to-get-pypi-statistics-about-package-download/">How to get pypi statistics about package download</a>
+									</li>
+											<li>
+					<a href="http://thomas-cokelaer.info/blog/2018/02/how-to-prevent-wget-from-creating-duplicates/">How to prevent wget from creating duplicates</a>
+									</li>
+					</ul>
+		</li><li id="calendar-3" class="widget-container widget_calendar"><h3 class="widget-title">calendar</h3><div id="calendar_wrap" class="calendar_wrap"><table id="wp-calendar">
+	<caption>January 2014</caption>
+	<thead>
+	<tr>
+		<th scope="col" title="Monday">M</th>
+		<th scope="col" title="Tuesday">T</th>
+		<th scope="col" title="Wednesday">W</th>
+		<th scope="col" title="Thursday">T</th>
+		<th scope="col" title="Friday">F</th>
+		<th scope="col" title="Saturday">S</th>
+		<th scope="col" title="Sunday">S</th>
+	</tr>
+	</thead>
+
+	<tfoot>
+	<tr>
+		<td colspan="3" id="prev"><a href="http://thomas-cokelaer.info/blog/2013/11/">« Nov</a></td>
+		<td class="pad">&nbsp;</td>
+		<td colspan="3" id="next"><a href="http://thomas-cokelaer.info/blog/2014/02/">Feb »</a></td>
+	</tr>
+	</tfoot>
+
+	<tbody>
+	<tr>
+		<td colspan="2" class="pad">&nbsp;</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td>
+	</tr>
+	<tr>
+		<td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td>
+	</tr>
+	<tr>
+		<td><a href="http://thomas-cokelaer.info/blog/2014/01/13/" aria-label="Posts published on January 13, 2014">13</a></td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td>
+	</tr>
+	<tr>
+		<td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td>
+	</tr>
+	<tr>
+		<td>27</td><td><a href="http://thomas-cokelaer.info/blog/2014/01/28/" aria-label="Posts published on January 28, 2014">28</a></td><td><a href="http://thomas-cokelaer.info/blog/2014/01/29/" aria-label="Posts published on January 29, 2014">29</a></td><td>30</td><td><a href="http://thomas-cokelaer.info/blog/2014/01/31/" aria-label="Posts published on January 31, 2014">31</a></td>
+		<td class="pad" colspan="2">&nbsp;</td>
+	</tr>
+	</tbody>
+	</table></div></li><li id="recent-comments-2" class="widget-container widget_recent_comments"><h3 class="widget-title">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link"><a href="http://thomas-cokelaer.info/" rel="external nofollow" class="url">Thomas Cokelaer</a></span> on <a href="http://thomas-cokelaer.info/blog/2011/03/post-2/#comment-150956">Python list: difference between append and extend</a></li><li class="recentcomments"><span class="comment-author-link">none</span> on <a href="http://thomas-cokelaer.info/blog/2016/09/gimp-how-to-make-a-transparent-background/#comment-150804">gimp: how to make a transparent background</a></li><li class="recentcomments"><span class="comment-author-link">AnonymousUser</span> on <a href="http://thomas-cokelaer.info/blog/2014/08/installing-another-python-version-into-virtualenv/#comment-150434">Installing another Python version into virtualenv</a></li><li class="recentcomments"><span class="comment-author-link">Alli</span> on <a href="http://thomas-cokelaer.info/blog/2016/09/gimp-how-to-make-a-transparent-background/#comment-150053">gimp: how to make a transparent background</a></li><li class="recentcomments"><span class="comment-author-link">Anonymous</span> on <a href="http://thomas-cokelaer.info/blog/2011/03/post-2/#comment-149853">Python list: difference between append and extend</a></li></ul></li><li id="archives-2" class="widget-container widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
+			<li><a href="http://thomas-cokelaer.info/blog/2018/10/">October 2018</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2018/08/">August 2018</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2018/05/">May 2018</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2018/03/">March 2018</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2018/02/">February 2018</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2018/01/">January 2018</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2017/12/">December 2017</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2017/10/">October 2017</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2017/09/">September 2017</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2017/08/">August 2017</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2017/06/">June 2017</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2017/05/">May 2017</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2017/01/">January 2017</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2016/11/">November 2016</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2016/10/">October 2016</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2016/09/">September 2016</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2016/03/">March 2016</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2016/02/">February 2016</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2016/01/">January 2016</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2015/06/">June 2015</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2015/05/">May 2015</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2015/02/">February 2015</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2014/12/">December 2014</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2014/11/">November 2014</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2014/10/">October 2014</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2014/09/">September 2014</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2014/08/">August 2014</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2014/07/">July 2014</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2014/06/">June 2014</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2014/05/">May 2014</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2014/04/">April 2014</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2014/03/">March 2014</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2014/02/">February 2014</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2014/01/">January 2014</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2013/11/">November 2013</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2013/10/">October 2013</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2013/09/">September 2013</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2013/08/">August 2013</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2013/07/">July 2013</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2013/06/">June 2013</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2013/03/">March 2013</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2013/02/">February 2013</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2013/01/">January 2013</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2012/12/">December 2012</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2012/11/">November 2012</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2012/10/">October 2012</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2012/07/">July 2012</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2012/06/">June 2012</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2012/04/">April 2012</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2012/03/">March 2012</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2012/02/">February 2012</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2012/01/">January 2012</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2011/11/">November 2011</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2011/10/">October 2011</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2011/09/">September 2011</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2011/08/">August 2011</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2011/07/">July 2011</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2011/06/">June 2011</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2011/05/">May 2011</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2011/04/">April 2011</a></li>
+	<li><a href="http://thomas-cokelaer.info/blog/2011/03/">March 2011</a></li>
+		</ul>
+		</li><li id="categories-2" class="widget-container widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+	<li class="cat-item cat-item-11"><a href="http://thomas-cokelaer.info/blog/category/amusement/">amusement</a>
+</li>
+	<li class="cat-item cat-item-138"><a href="http://thomas-cokelaer.info/blog/category/bioinformatics/">bioinformatics</a>
+</li>
+	<li class="cat-item cat-item-82"><a href="http://thomas-cokelaer.info/blog/category/biology/">biology</a>
+</li>
+	<li class="cat-item cat-item-16"><a href="http://thomas-cokelaer.info/blog/category/computer-science/">Computer Science</a>
+</li>
+	<li class="cat-item cat-item-79"><a href="http://thomas-cokelaer.info/blog/category/data-analysis/">Data analysis</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="http://thomas-cokelaer.info/blog/category/internet-related/">Internet related</a>
+</li>
+	<li class="cat-item cat-item-83"><a href="http://thomas-cokelaer.info/blog/category/life-science/">Life Science</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://thomas-cokelaer.info/blog/category/linux/">Linux</a>
+</li>
+	<li class="cat-item cat-item-95"><a href="http://thomas-cokelaer.info/blog/category/notes/">Notes</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="http://thomas-cokelaer.info/blog/category/english-2/">Others</a>
+</li>
+	<li class="cat-item cat-item-41"><a href="http://thomas-cokelaer.info/blog/category/photos/">photos</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="http://thomas-cokelaer.info/blog/category/python-2/">Python</a>
+</li>
+	<li class="cat-item cat-item-29"><a href="http://thomas-cokelaer.info/blog/category/r/">R</a>
+</li>
+	<li class="cat-item cat-item-78"><a href="http://thomas-cokelaer.info/blog/category/raspberrypi/">raspberryPi</a>
+</li>
+	<li class="cat-item cat-item-97"><a href="http://thomas-cokelaer.info/blog/category/software-development/">Software development</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://thomas-cokelaer.info/blog/category/uncategorized/">Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-32"><a href="http://thomas-cokelaer.info/blog/category/wordpress/">wordpress</a>
+</li>
+		</ul>
+</li><li id="meta-2" class="widget-container widget_meta"><h3 class="widget-title">Meta</h3>			<ul>
+						<li><a href="http://thomas-cokelaer.info/blog/wp-login.php">Log in</a></li>
+			<li><a href="http://thomas-cokelaer.info/blog/feed/">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://thomas-cokelaer.info/blog/comments/feed/">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="https://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>			</ul>
+			</li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+	</div><!-- #main -->
+
+	<div id="footer" role="contentinfo">
+		<div id="colophon">
+
+
+
+			<div id="site-info">
+				<a href="http://thomas-cokelaer.info/blog/" title="Thomas Cokelaer&#39;s blog" rel="home">
+					Thomas Cokelaer's blog				</a>
+			</div><!-- #site-info -->
+
+			<div id="site-generator">
+								<a href="http://wordpress.org/" title="Semantic Personal Publishing Platform" rel="generator">Proudly powered by WordPress.</a>
+			</div><!-- #site-generator -->
+
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script><script>
+    jQuery(document).ready(function () {
+		jQuery.post('http://thomas-cokelaer.info/blog?ga_action=googleanalytics_get_script', {action: 'googleanalytics_get_script'}, function(response) {
+			var F = new Function ( response );
+			return( F() );
+		});
+    });
+</script><script type="text/javascript" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/comment-reply.min.js.download"></script>
+<script type="text/javascript" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/wp-syntax.js.download"></script>
+<script type="text/javascript" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/wp-embed.min.js.download"></script>
+<script async="async" type="text/javascript" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/form.js.download"></script>
+
+
+
+<!-- Dynamic page generated in 0.852 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2018-12-24 09:38:40 -->
+
+<!-- super cache --><div class="dd_outer"><div class="dd_inner" style="width: 900px;"><div id="dd_ajax_float" style="position: absolute; top: 409px; left: -85px; display: block;"><div class="dd_button_v"><iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 61px; height: 20px;" title="Twitter Tweet Button" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/tweet_button.d30011b0f5ce05b98f24b01d3331b3c1.en(1).html" data-url="http://thomas-cokelaer.info/blog/2014/01/starting-to-use-python-pandas-library/"></iframe><script type="text/javascript" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/widgets.js.download"></script></div><div style="clear:left"></div><div class="dd_button_v"><iframe src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/button2.html" height="69" width="51" scrolling="no" frameborder="0"></iframe></div><div style="clear:left"></div><div class="dd_button_v"><script src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/all.js.download"></script><fb:like href="http://thomas-cokelaer.info/blog/2014/01/starting-to-use-python-pandas-library/" send="false" show_faces="false" layout="box_count" width="50" class=" fb_iframe_widget" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=&amp;container_width=0&amp;href=http%3A%2F%2Fthomas-cokelaer.info%2Fblog%2F2014%2F01%2Fstarting-to-use-python-pandas-library%2F&amp;layout=box_count&amp;locale=en_US&amp;sdk=joey&amp;send=false&amp;show_faces=false&amp;width=50"><span style="vertical-align: bottom; width: 50px; height: 40px;"><iframe name="f5f11ae258b808" width="50px" height="1000px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" title="fb:like Facebook Social Plugin" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/like.html" style="border: none; visibility: visible; width: 50px; height: 40px;" class=""></iframe></span></fb:like></div><div style="clear:left"></div><div class="dd_button_v"><script type="text/javascript" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/plusone.js.download" gapi_processed="true"></script><div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 50px; height: 24px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 50px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;" tabindex="0" vspace="0" width="100%" id="I1_1545644322158" name="I1_1545644322158" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/fastbutton.html" data-gapiattached="true" title="G+"></iframe></div></div><div style="clear:left"></div><div class="dd_button_v"><script src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/in.js.download" type="text/javascript"></script><span class="IN-widget" style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;"><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1545644323183_0"><a id="li_ui_li_gen_1545644323183_0-link" href="javascript:void(0);"><span id="li_ui_li_gen_1545644323183_0-logo">in</span><span id="li_ui_li_gen_1545644323183_0-title"><span id="li_ui_li_gen_1545644323183_0-mark"></span><span id="li_ui_li_gen_1545644323183_0-title-text">Share</span></span></a></span></span></span><script type="IN/Share+init" data-url="http://thomas-cokelaer.info/blog/2014/01/starting-to-use-python-pandas-library/" data-counter="top"></script></div><div style="clear:left"></div></div></div></div><iframe scrolling="no" frameborder="0" allowtransparency="true" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/widget_iframe.d30011b0f5ce05b98f24b01d3331b3c1.html" title="Twitter settings iframe" style="display: none;"></iframe><iframe src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/portal.html" id="st_gdpr_iframe" style="width: 0px; height: 0px; position: absolute; left: -5000px;"></iframe><iframe name="oauth2relay689287399" id="oauth2relay689287399" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/j-GHT1gpo6-.html" style="border: none;"></iframe></div><div></div></div></div><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe" src="./Starting to use Python Pandas library _ Thomas Cokelaer&#39;s blog_files/saved_resource(1).html"></iframe></body></html>
