@@ -1,0 +1,6 @@
+# Ignore Package Tutorial#
+
+Package Tutorial/
+
+#Ignore Checkpoints#
+.ipynb_checkpoints/
